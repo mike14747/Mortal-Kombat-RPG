@@ -1,0 +1,18 @@
+body {
+    background-image: url('../images/mk_bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.img_label {
+    height: 20%;
+    overflow: auto;
+    font-size: 1.0em;
+    z-index: 2;
+	top: 70%;
+}
+
+.mw-200 {
+    max-width: 200px;
+}

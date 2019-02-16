@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- reset CSS -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- my javascript -->
+    <script src="js/game.js"></script>
+
+    <!-- include my bootstrap companion style sheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <title>Mortal Kombat RPG Game</title>
+</head>
+
+<body>
+    <audio id="beginning">
+        <source src="sounds/beginning.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container-fluid">
+
+        <div class="row bg-dark text-light py-1">
+
+            <div class="col-sm-2 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="images/mk_logo.png" alt="Mortal Kombat">
+            </div>
+
+            <div class="col-sm-8 d-flex align-items-center justify-content-center">
+                <h1 class="text-warning">Mortal Kombat RPG Game</h1>
+            </div>
+
+            <div class="col-sm-2 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="images/mk_logo.png" alt="Mortal Kombat">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container-fluid pb-5 overflow-auto">
+
+        <div id="select_player" class="row">
+            <div class="col-9 text-center">
+                <div id="top_div" class="row mb-4">
+                    <div class="col-12">
+                        <h2 id="selectPlayer" class="text-center p-3 font-weight-bold"></h2>
+                        <div class="row">
+                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                                <img id="char0" class="img-fluid mt-2 char" value="0" src="" alt="">
+                                <h6 id="char0-h6"></h6>
+                            </div>
+                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                                <img id="char1" class="img-fluid mt-2 char" value="1" src="" alt="">
+                                <h6 id="char1-h6"></h6>
+                            </div>
+                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                                <img id="char2" class="img-fluid mt-2 char" value="2" src="" alt="">
+                                <h6 id="char2-h6"></h6>
+                            </div>
+                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                                <img id="char3" class="img-fluid mt-2 char" value="3" src="" alt="">
+                                <h6 id="char3-h6"></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mt-4">
+                    <div class="col-sm-3 mw-200 mx-auto p-0">
+                        <h2 id="you_text" class="text-center text-success font-weight-bold"></h2>
+                        <img id="you_img" class="img-fluid" src="" alt="">
+                        <h6 id="you-h6"></h6>
+                    </div>
+                    <div class="col-md-1 col-sm-0 mb-5">
+                        <img id="lightning-left" class="img-fluid" src="" alt="">
+                    </div>
+                    <div id="attack_div" class="col-lg-4 mx-auto overflow-auto">
+
+                    </div>
+                    <div class="col-md-1 col-sm-0 mb-5">
+                        <img id="lightning-right" class="img-fluid" src="" alt="">
+                    </div>
+                    <div class="col-sm-3 mw-200 mx-auto p-0">
+                        <h2 id="opp_text" class="text-center text-danger font-weight-bold"></h2>
+                        <img id="opp_img" class="img-fluid" src="" alt="">
+                        <h6 id="opp-h6"></h6>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-4 col-sm-6 mt-4">
+                        <h2 id="queue_text" class="text-center text-primary font-weight-bold mt-4"></h2>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img id="q0_img" class="img-fluid mb-2" src="" alt="">
+                            </div>
+                            <div class="col-sm-6">
+                                <img id="q1_img" class="img-fluid" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3 d-flex justify-content-end mb-auto">
+                <div class="card bg-light my-3" style="max-width: 15rem;">
+                    <div class="card-header">Instructions</div>
+                    <div class="card-body">
+                        <div class="text-center"><button id="startButton"
+                                class="btn btn-warning btn-lg mb-4">Start</button></div>
+
+                        <p class="small">- Press the 'Start' button.</p>
+                        <p class="small">- Select your character.</p>
+                        <p class="small">- Select your first opponent.</p>
+                        <p class="small">- Press 'Attack' to inflict damage upon your opponent.</p>
+                        <p class="small">- If
+                            either the player or opponent's life falls to zero, they are defeated.</p>
+                        <p class="small">- If you defeat your opponent, select your next opponent.</p>
+                        <p class="small">- Defeat all 3 of your opponents to win the game.</p>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="w-100 fixed-bottom ">
+        <p class="small text-center py-2 m-0 bg-dark text-warning">Copyright &#169; 2019 mike14747</p>
+    </footer>
+
+</body>
+
+</html>
