@@ -37,7 +37,7 @@ $(document).ready(function () {
     var opponent = "";
     var isPlayerChosen = false;
     var isOpponentChosen = false;
-    var charArray = [0, 1, 2, 3];
+    var charArray = ["0", "1", "2", "3"];
 
     function startGame(pl, op) {
         $("#attackButton").on("click", function () {
@@ -67,15 +67,8 @@ $(document).ready(function () {
             $("#char" + i).attr("src", "images/" + characters[i].image_name);
             $("#char" + i).addClass("border");
             $("#char" + i + "-h6").addClass("w-100 d-flex bg-light justify-content-center align-items-center");
-            $("#char" + i + "-h6").text(characters[i].HealthPoints);
+            $("#char" + i + "-h6").text("Health: " + characters[i].HealthPoints);
         }
-
-        /* for (var i = 1; i <= 4; i++) {
-            $("#char" + i).attr("src", "images/char" + i + ".png");
-            $("#char" + i).addClass("border");
-            $("#char" + i + "-h6").addClass("w-100 d-flex bg-light justify-content-center align-items-center");
-            $("#char" + i + "-h6").text("Health: 150");
-        } */
 
         $(".char").on("click", function () {
             if (!isPlayerChosen) {
@@ -90,7 +83,7 @@ $(document).ready(function () {
                 $("#you_img").attr("src", "images/" + characters[player].image_name);
                 $("#you_img").addClass("border");
                 $("#you-h6").addClass("w-100 d-flex bg-light justify-content-center align-items-center");
-                $("#you-h6").text(characters[player].HealthPoints);
+                $("#you-h6").text("Health: " + characters[player].HealthPoints);
                 // remove the selected player from the charArray
                 var indexToRemove = charArray.indexOf(player);
                 charArray.splice(indexToRemove, 1);
@@ -107,7 +100,7 @@ $(document).ready(function () {
                 $("#opp_img").attr("src", "images/" + characters[opponent].image_name);
                 $("#opp_img").addClass("border");
                 $("#opp-h6").addClass("w-100 d-flex bg-light justify-content-center align-items-center");
-                $("#opp-h6").text(characters[opponent].HealthPoints);
+                $("#opp-h6").text("Health: " + characters[opponent].HealthPoints);
                 // remove the selected opponent from the charArray
                 var indexToRemove = charArray.indexOf(opponent);
                 charArray.splice(indexToRemove, 1);
@@ -122,6 +115,9 @@ $(document).ready(function () {
                     var tempRemove = charArray[i];
                     $("#q" + i + "_img").attr("src", "images/" + characters[tempRemove].image_name);
                 }
+                $('#beginning').animate({
+                    volume: 0.0
+                }, 2500);
                 startGame(player, opponent);
                 return false;
             }
