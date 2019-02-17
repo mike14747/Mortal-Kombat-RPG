@@ -49,80 +49,78 @@ $(document).ready(function () {
     var charArray = ["0", "1", "2", "3"];
     var playerHealth = 0;
     var opponentHealth = 0;
+    var selectOppText = "";
     var gameOver = false;
 
-    // hide the things until the appropriate times to show them
-    $("#top_row").hide();
-    $("#match_row").hide();
-    $("#you_row").hide();
-    $("#opp_row").hide();
-    $("#queue_text").hide();
-    $("#message_row").hide();
-
-    // clear the queue area
-    function clearQueue() {
-        $("#queue_text").hide(500);
+    // hide the attack button and lightning divs
+    function hideDivs() {
+        $("#attack_div").hide();
+        $("#attackButton").hide();
         for (var i = 0; i < 4; i++) {
-            $("#q" + i + "_img").attr("src", "");
+            $("#char" + i).hide();
+            $("#char" + i + "_h6").hide();
         }
     }
+    hideDivs();
 
-    // clear you and opp data
-    function clearYouOpp() {
-        $("#q").hide();
+    // show the attack button and lightning divs
+    function showDivs() {
+        $("#attack_div").show();
+        $("#attackButton").show();
+        $("#queue_text").show(500);
+        for (var i = 0; i < charArray.length; i++) {
+            $("#q" + i + "_img").show(250);
+        }
+        $("#selectPlayer").show();
+        $("#top_div").slideUp();
     }
 
+    // run all tasks required if a player won the game
     function wonMatch() {
-        $("#attack_div").html("");
+        // console.log("startGame is: " + startGame);
         playerWins++;
-        // show the won game/round text
-        $("#message_row").show();
-        if (playerWins == 3) {
-            $("#message_text").css("background-color", "#28a745");
-            $("#message_text").text("You've won the Game!");
-        } else {
-            $("#message_text").css("background-color", "#17a2b8");
-            $("#message_text").text("You've won this round!");
-        }
-        setTimeout(function () {
-            document.getElementById("wonMatch").play();
-            $("#opp_row").hide(500);
-            clearQueue();
-        }, 1000);
+        console.log(playerWins);
         if (playerWins == 3) {
             // end the game since you've defeated all 3 opponents
+            document.getElementById("wonGame").play();
+            hideDivs();
             gameOver = true;
+            // console.log("Game Over is: " + gameOver);
             return true;
         } else {
-            if (playerWins == 1) {
-                $("#selectPlayer").text("Select your next Opponent:");
-            } else if (playerWins == 2) {
-                $("#selectPlayer").text("Select your final Opponent:");
-            }
+            document.getElementById("wonMatch").play();
+            opponent = "";
             isOpponentChosen = false;
-        }
-        setTimeout(function () {
-            $("#message_row").hide();
-            showChar();
+            hideDivs();
+            $("#opp_text").hide();
+            $("#opp_img").hide();
+            $("#opp_h6").text("");
+            setTimeout(function () {
+                // remove characters from the queue
+                $("#queue_text").hide(500);
+                for (var i = 0; i < charArray.length; i++) {
+                    $("#q" + i + "_img").hide(250);
+                }
+                $("#selectPlayer").show();
+                $("#top_div").slideDown();
+                showChar();
+            }, 2500);
             return true;
-        }, 2500);
+        }
     }
 
+    // run all tasks required if the player lost a match
     function lostMatch() {
-        $("#attack_div").html("");
         document.getElementById("lostMatch").play();
-        gameOver = true;
-        clearQueue();
-        $("#message_row").show();
-        $("#message_text").css("background-color", "#fd7e14");
-        $("#message_text").text("You've Lost the Game!");
-        return true;
     }
 
     // set the function for what happens after you and your opponent have been selected
     function startGame() {
-        $("#attack_div").html("<button id='attackButton' class='btn btn-light btn-lg'>Attack!</button>");
+        $("#opp_text").show();
+        $("#opp_img").show();
         $("#attackButton").on("click", function () {
+            console.log(opponentHealth);
+            // console.log("Player Attack1: " + playerAttack);
             if (!gameOver) {
                 opponentHealth -= playerAttack;
                 $("#opp_h6").text("Health: " + opponentHealth);
@@ -141,11 +139,11 @@ $(document).ready(function () {
                 }
                 playerAttack += playerAttackInc;
                 document.getElementById("attack").play();
-                $("#lightning_right").fadeIn(100);
-                $("#lightning_right").attr("src", "images/lightning_r.png").fadeOut(200);
+                $("#lightning-right").fadeIn(100);
+                $("#lightning-right").attr("src", "images/lightning_r.png").fadeOut(200);
                 setTimeout(function () {
-                    $("#lightning_left").fadeIn(100);
-                    $("#lightning_left").attr("src", "images/lightning_l.png").fadeOut(200);
+                    $("#lightning-left").fadeIn(100);
+                    $("#lightning-left").attr("src", "images/lightning_l.png").fadeOut(200);
                 }, 200);
             }
         });
@@ -167,57 +165,66 @@ $(document).ready(function () {
             }, 150);
             if (!isPlayerChosen) {
                 $("#selectPlayer").text("Select your Character:");
+            } else {
+                if (playerWins == 0) {
+                    selectOppText = "first";
+                } else if (playerWins == 1) {
+                    selectOppText = "next";
+                } else if (playerWins == 2) {
+                    selectOppText = "final";
+                }
+                $("#selectPlayer").text("Select your " + selectOppText + " Opponent:");
             }
         }
 
         $(".char").on("click", function () {
-            $("#match_row").show();
             if (!isPlayerChosen || !isOpponentChosen) {
                 if (!isPlayerChosen) {
                     // the player's character hasn't been selected
                     player = $(this).attr("value");
                     // hide the character you just selected
-                    $("#char" + player).hide(0);
+                    $("#char" + player).hide(500);
                     $("#char" + player + "_h6").text("");
                     $("#char" + player + "_h6").hide();
-                    // show the match_row with you and your opponent
                     isPlayerChosen = true;
-                    $("#you_row").show();
+                    $("#you_text").text("You:");
                     $("#you_img").attr("src", "images/" + characters[player].imageName);
+                    $("#you_img").addClass("border");
                     playerHealth = characters[player].Health;
                     playerAttack = characters[player].Attack;
                     playerAttackInc = characters[player].Attack * characters[player].AttackMult;
-                    $("#you_h6").text("Health: " + characters[player].Health);
+                    $("#you_h6").addClass("w-100 d-flex bg-light justify-content-center align-items-center");
+                    $("#you_h6").text("Health: " + playerHealth);
                     // remove the selected player from the charArray
                     var indexToRemove = charArray.indexOf(player);
                     charArray.splice(indexToRemove, 1);
-                    $("#selectPlayer").text("Select your first Opponent:");
                 } else if (!isOpponentChosen) {
                     // the player has been selected, but the opponent hasn't been
                     opponent = $(this).attr("value");
                     // hide the opponent you just selected
-                    $("#char" + opponent).hide(0);
+                    $("#char" + opponent).hide(500);
                     $("#char" + opponent + "_h6").text("");
                     $("#char" + opponent + "_h6").hide();
                     isOpponentChosen = true;
-                    $("#opp_row").show();
                     $("#opp_text").text("Opponent:");
                     $("#opp_img").attr("src", "images/" + characters[opponent].imageName);
+                    $("#opp_img").addClass("border");
                     opponentHealth = characters[opponent].Health;
                     opponentCounterAttack = characters[opponent].CounterAttack;
-                    $("#opp_h6").text("Health: " + characters[opponent].Health);
+                    $("#opp_h6").addClass("w-100 d-flex bg-light justify-content-center align-items-center");
+                    $("#opp_h6").text("Health: " + opponentHealth);
                     // remove the selected opponent from the charArray
                     var indexToRemove = charArray.indexOf(opponent);
                     charArray.splice(indexToRemove, 1);
                     // the player and the opponent have both been selected
-                    // $("#selectPlayer").hide(500);
-                    $("#top_row").slideUp(500);
-                    // move the remaining opponent(s) to the queue
-                    if (charArray.length > 0) {
-                        $("#queue_text").show();
-                        for (var i = 0; i < charArray.length; i++) {
-                            $("#q" + i + "_img").attr("src", "images/" + characters[charArray[i]].imageName);
-                        }
+                    $("#selectPlayer").hide(500);
+                    $("#top_div").slideUp(500);
+                    showDivs();
+                    // move the 2 remaining opponents to the queue
+                    $("#queue_text").text("The Queue:");
+                    for (var i = 0; i < charArray.length; i++) {
+                        var tempRemove = charArray[i];
+                        $("#q" + i + "_img").attr("src", "images/" + characters[tempRemove].imageName);
                     }
                     $("#beginning").animate({
                         volume: 0.0
@@ -232,9 +239,12 @@ $(document).ready(function () {
     // make a function to add pics of the charcters or remaining characters to be chosen from
     function showChar() {
         for (var i = 0; i < charArray.length; i++) {
+            $("#char" + charArray[i]).show();
             $("#char" + charArray[i]).attr("src", "images/" + characters[charArray[i]].imageName);
+            $("#char" + charArray[i]).addClass("border");
+            $("#char" + charArray[i] + "_h6").show();
+            $("#char" + charArray[i] + "_h6").addClass("w-100 d-flex bg-light justify-content-center align-items-center");
             $("#char" + charArray[i] + "_h6").text("Health: " + characters[charArray[i]].Health);
-            $("#top_row").slideDown(500);
         }
         prepGame();
         return true;

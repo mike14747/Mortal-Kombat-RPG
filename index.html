@@ -57,7 +57,7 @@
             </div>
 
             <div class="col-sm-8 d-flex align-items-center justify-content-center">
-                <h1 class="text-warning">Mortal Kombat RPG Game</h1>
+                <h1 class="text-warning text-center">Mortal Kombat RPG Game</h1>
             </div>
 
             <div class="col-sm-2 d-flex align-items-center justify-content-center">
@@ -72,55 +72,84 @@
 
         <div id="select_player" class="row">
             <div class="col-9 text-center">
-                <div id="top_div" class="row mb-4">
+                <div id="top_row" class="row ml-2 mb-4">
                     <div class="col-12">
-                        <h2 id="selectPlayer" class="text-center p-3 font-weight-bold"></h2>
+                        <h2 id="selectPlayer" class="text-center mt-2 p-2"></h2>
                         <div class="row">
-                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                            <div class="col-sm-3 mx-auto p-0 border">
                                 <img id="char0" class="img-fluid mt-2 char" value="0" src="" alt="">
-                                <h6 id="char0_h6"></h6>
+                                <h6 id="char0_h6"
+                                    class="w-100 d-flex bg-light justify-content-center align-items-center mb-0"></h6>
                             </div>
-                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                            <div class="col-sm-3 mx-auto p-0 border">
                                 <img id="char1" class="img-fluid mt-2 char" value="1" src="" alt="">
-                                <h6 id="char1_h6"></h6>
+                                <h6 id="char1_h6"
+                                    class="w-100 d-flex bg-light justify-content-center align-items-center mb-0"></h6>
                             </div>
-                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                            <div class="col-sm-3 mx-auto p-0 border">
                                 <img id="char2" class="img-fluid mt-2 char" value="2" src="" alt="">
-                                <h6 id="char2_h6"></h6>
+                                <h6 id="char2_h6"
+                                    class="w-100 d-flex bg-light justify-content-center align-items-center mb-0"></h6>
                             </div>
-                            <div class="col-sm-3 mw-200 mx-auto p-0">
+                            <div class="col-sm-3 mx-auto p-0 border">
                                 <img id="char3" class="img-fluid mt-2 char" value="3" src="" alt="">
-                                <h6 id="char3_h6"></h6>
+                                <h6 id="char3_h6"
+                                    class="w-100 d-flex bg-light justify-content-center align-items-center mb-0"></h6>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row align-items-center mt-4">
-                    <div class="col-sm-3 mw-200 mx-auto p-0 m-sm">
-                        <h2 id="you_text" class="text-center text-success font-weight-bold"></h2>
-                        <img id="you_img" class="img-fluid" src="" alt="">
-                        <h6 id="you_h6"></h6>
+                <div id="match_row" class="row align-items-center mt-4 ml-2">
+                    <div class="col-md-4 col-sm-6 mx-auto">
+                        <div id="you_row" class="row">
+                            <div class="col-12 p-0">
+                                <h2 id="you_text" class="text-center bg-light text-success m-0">You:</h2>
+                            </div>
+                            <div class="col-12 mx-auto p-0 m-sm border">
+                                <img id="you_img" class="img-fluid" src="" alt="">
+                                <h6 id="you_h6"
+                                    class="w-100 d-flex bg-light justify-content-center align-items-center mb-0"></h6>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-1 col-sm-0 mb-5 lightning_hide">
-                        <img id="lightning-left" class="img-fluid lightning_hide" src="" alt="">
+                        <img id="lightning_left" class="img-fluid" src="" alt="">
                     </div>
-                    <div id="attack_div" class="col-lg-4 mx-auto overflow-auto m-sm">
+                    <div id="attack_div" class="col-lg-2 mx-auto overflow-auto m-sm">
 
                     </div>
                     <div class="col-md-1 col-sm-0 mb-5 lightning_hide">
-                        <img id="lightning-right" class="img-fluid" src="" alt="">
+                        <img id="lightning_right" class="img-fluid" src="" alt="">
                     </div>
-                    <div class="col-sm-3 mw-200 mx-auto p-0">
-                        <h2 id="opp_text" class="text-center text-danger font-weight-bold"></h2>
-                        <img id="opp_img" class="img-fluid" src="" alt="">
-                        <h6 id="opp_h6"></h6>
+                    <div class="col-md-4 col-sm-6 mx-auto">
+                        <div id="opp_row" class="row">
+                            <div class="col-12 p-0">
+                                <h2 id="opp_text" class="text-center bg-light text-danger m-0">Opponent:</h2>
+                            </div>
+                            <div class="col-12 mx-auto p-0 m-sm border">
+                                <img id="opp_img" class="img-fluid" src="" alt="">
+                                <h6 id="opp_h6"
+                                    class="w-100 d-flex bg-light justify-content-center align-items-center mb-0"></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="message_row" class="row ml-2 mb-4 overflow-hidden">
+                    <div class="col-8 mx-auto">
+                        <h2 id="message_text" class="text-center text-light mt-4 p-2"></h2>
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-md-4 col-sm-6 mt-4">
-                        <h2 id="queue_text" class="text-center text-primary font-weight-bold mt-4"></h2>
+                        <div id="q-row" class="row">
+                            <div class="col-12">
+                                <h2 id="queue_text" class="text-center text-primary mt-4">The Queue:
+                                </h2>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <img id="q0_img" class="img-fluid mb-2" src="" alt="">
@@ -148,6 +177,7 @@
                             either the player or opponent's life falls to zero, they are defeated.</p>
                         <p class="small">- If you defeat your opponent, select your next opponent.</p>
                         <p class="small">- Defeat all 3 of your opponents to win the game.</p>
+                        <p class="small">- Refresh your browser to play again.</p>
                         </ol>
                     </div>
                 </div>
