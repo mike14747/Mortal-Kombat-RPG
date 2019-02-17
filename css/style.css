@@ -16,3 +16,12 @@ body {
 .mw-200 {
     max-width: 200px;
 }
+
+@media (max-width: 991.98px) {
+    .m-sm {
+        margin-bottom: 1.5rem;
+    }
+    .lightning_hide {
+        display: none;
+    }
+}
