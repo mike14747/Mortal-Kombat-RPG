@@ -1,9 +1,6 @@
 $(document).ready(function () {
     "use strict";
 
-    // document.activeElement.blur();
-    // $("img").blur();
-
     // set the character array and objects
     var characters = [
         {
