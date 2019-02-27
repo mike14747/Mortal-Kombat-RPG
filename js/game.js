@@ -46,6 +46,7 @@ $(document).ready(function () {
     var playerHealth = 0;
     var opponentHealth = 0;
     var gameOver = true;
+    var colorInterval = "";
 
     // clear the queue area
     function clearQueue() {
@@ -70,6 +71,7 @@ $(document).ready(function () {
         playerHealth = 0;
         opponentHealth = 0;
         gameOver = true;
+        colorInterval = "";
         // hide the things until the appropriate times to show them
         $("#select_char").hide();
         $("#match_row").hide();
@@ -91,6 +93,7 @@ $(document).ready(function () {
         $("#attack_div").addClass("vis_hidden");
         document.getElementById("wonMatch").play();
         clearQueue();
+        clearInterval(colorInterval);
         playerWins++;
         // show the won game/round text
         $("#message_row").show();
@@ -115,9 +118,11 @@ $(document).ready(function () {
         setTimeout(function () {
             $("#message_row").hide();
             $("#opp_div").hide();
-            showChar();
+            if (playerWins < 3) {
+                showChar();
+            }
             return;
-        }, 5000);
+        }, 4000);
     }
 
     function lostMatch() {
@@ -125,6 +130,7 @@ $(document).ready(function () {
         document.getElementById("lostMatch").play();
         gameOver = true;
         clearQueue();
+        clearInterval(colorInterval);
         $("#message_row").show();
         $("#message_text").css("background-color", "#fd7e14");
         $("#message_text").text("You've Lost the Game!");
@@ -175,7 +181,7 @@ $(document).ready(function () {
         if (!isPlayerChosen || !isOpponentChosen) {
             // make the 'Select a Character/Opponent' text change colors in the attract mode
             var colorCounter = 0;
-            setInterval(function () {
+            colorInterval = setInterval(function () {
                 var selectTextColor = ["#ffef2f", "ffe72a", "ffdf24", "ffd719", "#ffcd14", "#ff950d"];
                 $("#select_text").css("color", selectTextColor[colorCounter]);
                 colorCounter++;
