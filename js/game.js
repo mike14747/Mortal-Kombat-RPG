@@ -77,7 +77,7 @@ $(document).ready(function () {
         $("#match_row").hide();
         $("#you_div").hide();
         $("#opp_div").hide();
-        $("#message_row").hide();
+        $("#message_row").addClass("vis_hidden");
         $("#q_row").hide();
         // show the insructions with the start button
         $("#instructions").show();
@@ -96,7 +96,7 @@ $(document).ready(function () {
         clearInterval(colorInterval);
         playerWins++;
         // show the won game/round text
-        $("#message_row").show();
+        $("#message_row").removeClass("vis_hidden");
         if (playerWins == 3) {
             $("#message_text").css("background-color", "#28a745");
             $("#message_text").text("You've won the Match!");
@@ -108,17 +108,17 @@ $(document).ready(function () {
         } else {
             $("#message_text").css("background-color", "#17a2b8");
             $("#message_text").text("You've won this round!");
-            if (playerWins == 1) {
-                $("#select_text").text("Select your next Opponent:");
-            } else if (playerWins == 2) {
-                $("#select_text").text("Select your final Opponent:");
-            }
             isOpponentChosen = false;
         }
         setTimeout(function () {
-            $("#message_row").hide();
             $("#opp_div").hide();
             if (playerWins < 3) {
+                $("#message_text").css("background-color", "#f59a4d");
+                if (playerWins == 1) {
+                    $("#message_text").text("Select your next Opponent:");
+                } else if (playerWins == 2) {
+                    $("#message_text").text("Select your final Opponent:");
+                }
                 showChar();
             }
             return;
@@ -131,11 +131,11 @@ $(document).ready(function () {
         gameOver = true;
         clearQueue();
         clearInterval(colorInterval);
-        $("#message_row").show();
+        $("#message_row").removeClass("vis_hidden");
         $("#message_text").css("background-color", "#fd7e14");
         $("#message_text").text("You've Lost the Game!");
         setTimeout(function () {
-            $("#message_row").hide();
+            $("#message_row").addClass("vis_hidden");
             restartGame();
             return;
         }, 5000);
@@ -181,16 +181,10 @@ $(document).ready(function () {
         if (!isPlayerChosen || !isOpponentChosen) {
             // make the 'Select a Character/Opponent' text change colors in the attract mode
             var colorCounter = 0;
-            colorInterval = setInterval(function () {
-                var selectTextColor = ["#ffef2f", "ffe72a", "ffdf24", "ffd719", "#ffcd14", "#ff950d"];
-                $("#select_text").css("color", selectTextColor[colorCounter]);
-                colorCounter++;
-                if (colorCounter == selectTextColor.length) {
-                    colorCounter = 0;
-                }
-            }, 150);
             if (!isPlayerChosen) {
-                $("#select_text").text("Select your Character:");
+                $("#message_row").removeClass("vis_hidden");
+                $("#message_text").css("background-color", "#f59a4d");
+                $("#message_text").text("Select your Character:");
             }
         }
     }
@@ -219,7 +213,9 @@ $(document).ready(function () {
                 var indexToRemove = charArray.indexOf(player);
                 charArray.splice(indexToRemove, 1);
                 $("#attack_div").addClass("vis_hidden");
-                $("#select_text").text("Select your first Opponent:");
+                $("#message_row").removeClass("vis_hidden");
+                $("#message_text").css("background-color", "#f59a4d");
+                $("#message_text").text("Select your first Opponent:");
             } else if (!isOpponentChosen) {
                 // the player has been selected, but the opponent hasn't been
                 opponent = $(this).attr("value");
@@ -229,6 +225,7 @@ $(document).ready(function () {
                 $("#char" + opponent + "_h6").text("");
                 $("#char" + opponent + "_div").hide();
                 isOpponentChosen = true;
+                $("#message_row").addClass("vis_hidden");
                 $("#opp_div").show();
                 $("#opp_text").html("<span class='small text-dark' >Opponent: </span>" + characters[opponent].name);
                 $("#opp_img").attr("src", "images/" + characters[opponent].imageName);
