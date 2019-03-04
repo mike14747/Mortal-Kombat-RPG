@@ -150,7 +150,7 @@ $(document).ready(function () {
             $("#lr_text").text("-" + playerAttack);
             $("#lr_text").show();
             $("#lightning_right").fadeIn(100);
-            $("#lightning_right").attr("src", "images/lightning_r.png").fadeOut(500);
+            $("#lightning_right").removeClass("vis_hidden").fadeOut(500);
             $("#lr_text").fadeOut(500);
             if (opponentHealth <= 0) {
                 opponentHealth = 0;
@@ -163,7 +163,7 @@ $(document).ready(function () {
                     $("#ll_text").text("-" + opponentCounterAttack);
                     $("#ll_text").show();
                     $("#lightning_left").fadeIn(100);
-                    $("#lightning_left").attr("src", "images/lightning_l.png").fadeOut(500);
+                    $("#lightning_left").removeClass("vis_hidden").fadeOut(500);
                     $("#ll_text").fadeOut(500);
                 }, 200);
             }
