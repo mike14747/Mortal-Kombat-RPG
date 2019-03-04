@@ -51,8 +51,8 @@ $(document).ready(function () {
     // clear the queue area
     function clearQueue() {
         $("#q_row").hide(500);
-        for (var i = 0; i < 4; i++) {
-            $("#q" + i + "_img").attr("src", "");
+        for (var i = 0; i < 2; i++) {
+            $("#q" + i).empty();
         }
         return;
     }
@@ -209,6 +209,7 @@ $(document).ready(function () {
                 $("#you_div").append("<h6 id='you_h6' class='w-100 bg-light p-1 mb-0'></h6>");
                 $("#you_text").html("<span class='small text-dark' >You: </span>" + characters[player].name);
                 $("#you_img").attr("src", "images/" + characters[player].imageName);
+                $("#you_img").attr("alt", "You: " + characters[player].name);
                 playerHealth = characters[player].Health;
                 playerAttack = characters[player].Attack;
                 playerAttackInc = characters[player].Attack;
@@ -237,6 +238,7 @@ $(document).ready(function () {
                 $("#opp_div").append("<h6 id='opp_h6' class='w-100 bg-light p-1 mb-0'></h6>");
                 $("#opp_text").html("<span class='small text-dark' >Opponent: </span>" + characters[opponent].name);
                 $("#opp_img").attr("src", "images/" + characters[opponent].imageName);
+                $("#you_img").attr("alt", "Opponent: " + characters[opponent].name);
                 opponentHealth = characters[opponent].Health;
                 opponentCounterAttack = characters[opponent].CounterAttack;
                 $("#opp_h6").text("Health: " + characters[opponent].Health);
@@ -249,7 +251,9 @@ $(document).ready(function () {
                 if (charArray.length > 0) {
                     $("#q_row").show();
                     for (var i = 0; i < charArray.length; i++) {
-                        $("#q" + i + "_img").attr("src", "images/" + characters[charArray[i]].imageName);
+                        $("#q" + i).html("<img id='q" + i + "_img' class='img-fluid mb-2' src='images/" + characters[charArray[i]].imageName + "' alt='" + characters[charArray[i]].name + "'>");
+                        
+                        // $("#q" + i + "_img").attr("src", "images/" + characters[charArray[i]].imageName);
                     }
                 }
                 $("#beginning").animate({
