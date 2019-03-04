@@ -203,6 +203,10 @@ $(document).ready(function () {
                 // show the match_row with you and your opponent
                 isPlayerChosen = true;
                 $("#you_div").show();
+                $("#you_div").html("");
+                $("#you_div").append("<h5 id='you_text' class='bg-light text-success p-1 m-0'></h5>");
+                $("#you_div").append("<img id='you_img' class='img-fluid mt-2'>");
+                $("#you_div").append("<h6 id='you_h6' class='w-100 bg-light p-1 mb-0'></h6>");
                 $("#you_text").html("<span class='small text-dark' >You: </span>" + characters[player].name);
                 $("#you_img").attr("src", "images/" + characters[player].imageName);
                 playerHealth = characters[player].Health;
@@ -227,6 +231,10 @@ $(document).ready(function () {
                 isOpponentChosen = true;
                 $("#message_row").addClass("vis_hidden");
                 $("#opp_div").show();
+                $("#opp_div").html("");
+                $("#opp_div").append("<h5 id='opp_text' class='bg-light text-success p-1 m-0'></h5>");
+                $("#opp_div").append("<img id='opp_img' class='img-fluid mt-2'>");
+                $("#opp_div").append("<h6 id='opp_h6' class='w-100 bg-light p-1 mb-0'></h6>");
                 $("#opp_text").html("<span class='small text-dark' >Opponent: </span>" + characters[opponent].name);
                 $("#opp_img").attr("src", "images/" + characters[opponent].imageName);
                 opponentHealth = characters[opponent].Health;
