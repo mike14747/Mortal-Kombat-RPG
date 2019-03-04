@@ -180,7 +180,6 @@ $(document).ready(function () {
     function prepGame() {
         if (!isPlayerChosen || !isOpponentChosen) {
             // make the 'Select a Character/Opponent' text change colors in the attract mode
-            var colorCounter = 0;
             if (!isPlayerChosen) {
                 $("#message_row").removeClass("vis_hidden");
                 $("#message_text").css("background-color", "#f59a4d");
@@ -190,6 +189,7 @@ $(document).ready(function () {
     }
 
     $(".char").on("click", function () {
+        console.log("clicked on a character");
         if (!isPlayerChosen || !isOpponentChosen) {
             if (!isPlayerChosen) {
                 // the player's character hasn't been selected
@@ -252,7 +252,7 @@ $(document).ready(function () {
                     $("#q_row").show();
                     for (var i = 0; i < charArray.length; i++) {
                         $("#q" + i).html("<img id='q" + i + "_img' class='img-fluid mb-2' src='images/" + characters[charArray[i]].imageName + "' alt='" + characters[charArray[i]].name + "'>");
-                        
+
                         // $("#q" + i + "_img").attr("src", "images/" + characters[charArray[i]].imageName);
                     }
                 }
@@ -270,6 +270,7 @@ $(document).ready(function () {
         for (var i = 0; i < charArray.length; i++) {
             $("#char" + charArray[i] + "_text").text(characters[charArray[i]].name);
             $("#char" + charArray[i] + "_img").attr("src", "images/" + characters[charArray[i]].imageName);
+            $("#char" + charArray[i] + "_img").attr("alt", characters[charArray[i]].name);
             $("#char" + charArray[i] + "_h6").text("Health: " + characters[charArray[i]].Health);
             $("#select_char").slideDown(500);
         }
