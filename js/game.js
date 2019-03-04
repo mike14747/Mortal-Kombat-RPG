@@ -194,7 +194,7 @@ $(document).ready(function () {
             if (!isPlayerChosen) {
                 // the player's character hasn't been selected
                 $("#match_row").show();
-                player = $(this).attr("value");
+                player = $(this).attr("data-value");
                 // hide the character you just selected
                 $("#char" + player + "_text").text("");
                 $("#char" + player + "_img").attr("src", "");
@@ -218,7 +218,7 @@ $(document).ready(function () {
                 $("#message_text").text("Select your first Opponent:");
             } else if (!isOpponentChosen) {
                 // the player has been selected, but the opponent hasn't been
-                opponent = $(this).attr("value");
+                opponent = $(this).attr("data-value");
                 // hide the opponent you just selected
                 $("#char" + opponent + "_text").text("");
                 $("#char" + opponent + "_img").attr("src", "");
